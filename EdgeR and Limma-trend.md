@@ -96,5 +96,56 @@ But, this can be changed by switching **makeContrasts(c_vs_s = c - s, levels = d
 **result <- topTable(fit.contr, coef = 1, adjust = "BH", number = 10000) and write.table(result, "name_of_the_file.txt")** --> The results **(top DEGs)** are saved into a text file. The parameter number = 10000 ensures that up to 10,000 genes are included in the output
 
 
+# **Script for edgeR:**
+
+The edgeR and Limma-trend scripts begin in the same way; however, starting from the normalization step **dgList <- calcNormFactors(dgList)**, the script diverges as it transitions between the two packages
+#
+
+library(edgeR)
+
+countData <- as.matrix(read.csv("count_data.csv",sep=",",row.names="gene_id"))
+
+group <- factor(c("s", "s", "s", "s", "s", "s", "s", "c", "c", "c", "c"))
+
+dgList <- DGEList(counts=countData, group=group)
+
+keep <- filterByExpr(dgList)
+
+dgList <- dgList[keep,,keep.lib.sizes=FALSE]
+
+dgList <- calcNormFactors(dgList)
+
+design <- model.matrix(~group)
+
+y <- estimateDisp(dgList, design)
+
+et <- exactTest(y)
+
+topTags(et)
+
+topTags(et, n=200)
+
+data_edgeR <- topTags(et, n=200)
+
+write.table(data_edgeR, "file_name.csv", sep=",")
+
+# Script explanation:
+
+The explanation of the beggining of the script remains the same as the Limma-trend package
+#
+
+**design <- model.matrix(~group)** --> This creates a design matrix based on the **group** variable, which indicates the experimental conditions or groups for comparison. The matrix is used to model the relationship between the groups and the gene expression data
+
+**y <- estimateDisp(dgList, design)** --> Dispersion estimates are calculated for the count data stored in **dgList** using the design matrix. Dispersion measures the variability in gene expression across samples, accounting for biological and technical variation
+
+**et <- exactTest(y)** --> An **exact test** is performed to identify differentially expressed genes between the groups specified in the group variable. This method compares the expression levels of genes across **groups**
+
+**data_name <- topTags(et, n=200)** --> This extracts the top differentially expressed genes based on the exact test results. By default, it shows the most 200 significant genes according to p-value or false discovery rate (FDR) and it saves into a data frame called **data_name**
+
+**write.table(dados_bia_edgeR, "nomedoarquivo.csv", sep=",")** --> The results are saved to a CSV file named "nomedoarquivo.csv" with commas used as separators
+
+
+
+
 
 
