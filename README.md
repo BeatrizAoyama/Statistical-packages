@@ -9,3 +9,5 @@ DESeq2 (https://lashlock.github.io/compbio/R_presentation.html)
 Limma-Trend (https://bioconductor.org/packages/release/bioc/html/limma.html)
 
 EdgeR (https://bioconductor.org/packages/release/bioc/html/edgeR.html)
+
+Sleuth (https://github.com/pachterlab/sleuth)
