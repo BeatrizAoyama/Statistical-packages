@@ -88,7 +88,7 @@ print(name_of_PCA_file)
 
 **name_of_PCA_file <- plotPCA(rld_dados_DE, intgroup = c("condition"))**: A new PCA plot is created using a dataset named **rld_dados_DE**, which is assumed to contain regularized log-transformed data. The plot groups samples based on the condition variable
 
-**name_of_PCA_file <- plot_bia_nomes + geom_label(aes(label = name))**: This line adds labels to the plot using the **geom_label()** function from ggplot2. The **aes(label = name)** specifies that sample names are added as labels to the PCA plot for easier identification
+**name_of_PCA_file <- plot_PCA_names + geom_label(aes(label = name))**: This line adds labels to the plot using the **geom_label()** function from ggplot2. The **aes(label = name)** specifies that sample names are added as labels to the PCA plot for easier identification
 
 **print(name_of_PCA_file)** <- The final PCA plot, now customized with labels, is printed for visualization
 
