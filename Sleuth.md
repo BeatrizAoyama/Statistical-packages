@@ -4,15 +4,15 @@ Link:
 
 Sleuth (https://github.com/pachterlab/sleuth)
 
-The files generated from the alignment with Kallisto are run_info.json, abundance.tsv, and abundance.h5. The abundance results include the following columns: target_id (the genes), length (the gene's length), eff_length (the effective transcript length), est_count (the estimated gene counts), and TPM (Transcripts Per Million), a normalization metric used to quantify gene expression. 
+The files generated from the alignment with Kallisto are *run_info.json*, *abundance.tsv*, and *abundance.h5*. The **abundance results** include the following columns: *target_id (the genes)*, *length (the gene's length)*, *eff_length (the effective transcript length)*, *est_count (the estimated gene counts)*, and *TPM (Transcripts Per Million)*, a normalization metric used to quantify gene expression. 
 
 Therefore, the sample metadata for Sleuth must include the sample names, the condition, and the path to each abundance file produced by Kallisto, as shown in the example below:
 
-![image](https://github.com/user-attachments/assets/2e528773-c221-4895-a0f3-da7151e6d31e)
+![image](https://github.com/user-attachments/assets/f0322886-b064-44c8-ba6b-23cf758c923d)
 
 In this example, the **control** group samples are *ed* and the **disease** group samples are *cd*
 
-**Control group samples:**
+**Control group samples (in blue):**
 
 p2contd
 
@@ -22,7 +22,7 @@ p4contd
 
 p5contd
 #
-**Disease group samples:**
+**Disease group samples (in red):**
 
 p2d 
 
