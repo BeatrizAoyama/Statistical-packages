@@ -1,1 +1,49 @@
+# Statistical packages on R
 
+Link:
+DESeq2 (https://lashlock.github.io/compbio/R_presentation.html)
+
+Let us imagine two conditions, Condition 1 and Condition 2, which will be compared (Condition 1 vs Condition 2) to identify the differentially expressed genes.
+
+# **Script:**
+
+library(DESeq2)
+
+file <- read.csv("count_table_name_of_your_file.csv",row.names="gene_id")
+
+coldata <- read.csv("coldata_name_of_your_file.csv",row.names="amostras")
+
+matriz <- as.matrix(file)
+
+dds <- DESeqDataSetFromMatrix(countData = matriz, colData = coldata, design = ~ condition)
+
+data_DGE <- DESeq(dds) 
+
+data_DGE <- DESeq(dds)
+
+result_count <- results(data_DGE,contrast=c("condition","condition1","condition2"))
+
+result_count <- result_count[order(result_count$padj),]
+
+write.csv(result_count,file="name_your_file_containing_DGE.csv")
+
+
+#Preparing the PCA using ggplot2 package:
+
+rld_data_DGE <- rlog(data_DGE)
+
+print(plotPCA(rld_data_DGE, intgroup=c("condition")))
+
+library(ggplot2)
+
+name_of_PCA_file <- plotPCA(rld_dados_DE, intgroup=c("condition"))
+
+name_of_PCA_file <- plot_bia_nomes + geom_label(aes(label = name))
+
+
+#Script explanation:
+
+
+
+
+print(name_of_PCA_file)
